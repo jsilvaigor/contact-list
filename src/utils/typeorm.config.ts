@@ -1,5 +1,5 @@
 import {ConnectionOptions} from "typeorm";
-import {UserModel} from "../auth/register/user.model";
+import {UserModel} from "../auth/user.model";
 import envVars, {EnvVars} from "./environment";
 
 export function getTypeOrmOptions(env: EnvVars = envVars): ConnectionOptions {

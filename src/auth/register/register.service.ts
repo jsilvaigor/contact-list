@@ -7,7 +7,7 @@ import {generateAndSignToken} from "../../utils/jwt.utils";
 import {Logger} from "../../utils/logger";
 import {hashPassword} from "../../utils/password.utils";
 import {RegisterBody, TokenResponse} from "../auth.interface";
-import {UserModel} from "./user.model";
+import {UserModel} from "../user.model";
 
 export class RegisterService {
 
