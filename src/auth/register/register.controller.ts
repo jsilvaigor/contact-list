@@ -1,6 +1,6 @@
 import {Body, Header, HeaderParam, JsonController, Post} from "routing-controllers";
-import {RegisterService} from "./register.service";
 import {RegisterBody, TokenResponse} from "../auth.interface";
+import {RegisterService} from "./register.service";
 
 @JsonController("/auth/register")
 export class RegisterController {
@@ -9,8 +9,10 @@ export class RegisterController {
     }
 
     @Post("/")
-    register(@Body() body: RegisterBody, @HeaderParam("x-request-id") requestId: string): Promise<TokenResponse>{
-        return this.registerService.registerUser(body, requestId)
+    public register(@Body() body: RegisterBody,
+                    @HeaderParam("x-request-id") requestId: string,
+    ): Promise<TokenResponse> {
+        return this.registerService.registerUser(body, requestId);
     }
 
 }

@@ -1,8 +1,8 @@
-import * as dotenv from "dotenv"
+import * as dotenv from "dotenv";
 import * as Joi from "joi";
 import {LogLevel} from "./logger";
 
-dotenv.config()
+dotenv.config();
 
 export interface EnvVars {
     NODE_ENV: string;
@@ -16,8 +16,8 @@ export interface EnvVars {
 
 export function configureEnvironmentVars(environment: Record<string, unknown>): EnvVars {
     const schema = Joi.object({
-        NODE_ENV: Joi.string().valid('development', 'production', 'test').default('development'),
-        LOG_LEVEL: Joi.string().valid('debug', 'info', 'warn', 'error').default('debug'),
+        NODE_ENV: Joi.string().valid("development", "production", "test").default("development"),
+        LOG_LEVEL: Joi.string().valid("debug", "info", "warn", "error").default("debug"),
         PORT: Joi.number().default(3000),
         PREFIX: Joi.string().default("/api/v1"),
         DATABASE_URL: Joi.string().required(),
@@ -42,7 +42,7 @@ try {
     envVars = configureEnvironmentVars(process.env);
 } catch (e) {
     /* istanbul ignore next */
-    if (process.env.NODE_ENV !== 'test') {
+    if (process.env.NODE_ENV !== "test") {
         console.error(e);
         /* istanbul ignore next */
         process.exit(1);
@@ -50,11 +50,10 @@ try {
 }
 export default envVars;
 
-
-export function isDev(){
-    return envVars.NODE_ENV === "development"
+export function isDev() {
+    return envVars.NODE_ENV === "development";
 }
 
-export function isTest(){
-    return envVars.NODE_ENV === "test"
+export function isTest() {
+    return envVars.NODE_ENV === "test";
 }

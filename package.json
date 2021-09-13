@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "tsc -p tsconfig.build.json",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "start": "node dist/app.js",
     "start:dev": "ts-node src/app.ts",
     "test": "jest",

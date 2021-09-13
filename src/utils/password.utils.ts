@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from "bcrypt";
 import envVars from "./environment";
 
 export function hashPassword(password: string, saltsOrRounds = envVars.SALTS_OR_ROUNDS): Promise<string> {

@@ -1,32 +1,30 @@
-import envVars, {EnvVars} from "./environment";
 import {Connection, ConnectionOptions, createConnection} from "typeorm";
-import {getTypeOrmOptions} from "./typeorm.config";
 import {Logger} from "./logger";
+import {getTypeOrmOptions} from "./typeorm.config";
 
 export class DatabaseConnection {
-    private static connection: Connection
-    constructor(){}
+    public static connection: Connection;
 
-    static async getInstance(options: ConnectionOptions = getTypeOrmOptions()): Promise<Connection> {
-        if(!DatabaseConnection.connection){
-            Logger.info(`Database connection not found. Connecting now.`)
-            DatabaseConnection.connection = await createConnection(options)
+    public static async getInstance(options: ConnectionOptions = getTypeOrmOptions()): Promise<Connection> {
+        if (!DatabaseConnection.connection) {
+            Logger.info(`Database connection not found. Connecting now.`);
+            DatabaseConnection.connection = await createConnection(options);
         }
-        Logger.info(`Returning database connection.`)
-        return DatabaseConnection.connection
+        Logger.info(`Returning database connection.`);
+        return DatabaseConnection.connection;
     }
 
-    static async disconnect() {
-        if(DatabaseConnection.connection){
-            await DatabaseConnection.connection.close()
+    public static async disconnect() {
+        if (DatabaseConnection.connection) {
+            await DatabaseConnection.connection.close();
         }
     }
 
-    static async healthCheck() {
-        Logger.debug(`Checking database health.`)
-        const conn = await DatabaseConnection.getInstance()
-        const result = await conn.manager.query("SELECT 1+1 as check")
-        return Array.isArray(result) && result[0] && result[0].check === 2
+    public static async healthCheck() {
+        Logger.debug(`Checking database health.`);
+        const conn = await DatabaseConnection.getInstance();
+        const result = await conn.manager.query("SELECT 1+1 as check");
+        return Array.isArray(result) && result[0] && result[0].check === 2;
     }
 
 }

@@ -4,5 +4,5 @@ export interface RegisterBody {
 }
 
 export interface TokenResponse {
-    token: string
+    token: string;
 }
