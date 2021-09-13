@@ -9,6 +9,7 @@ export interface EnvVars {
     LOG_LEVEL: LogLevel;
     PORT: number;
     PREFIX: string;
+    DATABASE_URL: string;
 }
 
 export function configureEnvironmentVars(environment: Record<string, unknown>): EnvVars {
@@ -16,7 +17,8 @@ export function configureEnvironmentVars(environment: Record<string, unknown>): 
         NODE_ENV: Joi.string().valid('development', 'production', 'test').default('development'),
         LOG_LEVEL: Joi.string().valid('debug', 'info', 'warn', 'error').default('debug'),
         PORT: Joi.number().default(3000),
-        PREFIX: Joi.string().default("/api/v1")
+        PREFIX: Joi.string().default("/api/v1"),
+        DATABASE_URL: Joi.string().required()
     });
 
     const { error, value: vars } = schema.validate(environment, {

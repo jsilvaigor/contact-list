@@ -47,7 +47,7 @@ export class App {
     }
 
     run() {
-        Logger.info(`Application running on http://localhost:${this.env.PORT}${this.env.PREFIX}`);
+        Logger.log(`Application running on http://localhost:${this.env.PORT}${this.env.PREFIX}`);
         return this.app.listen(this.env.PORT)
     }
 }

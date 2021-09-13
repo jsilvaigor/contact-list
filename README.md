@@ -21,7 +21,7 @@ There are also some quality of life libraries like `helmet` for increasing secur
 variables validation, `routing-controllers` for a better experience routing in `express`.
 
 The database used is `postgresql`, you can run it locally using the `make db` command provided.\
-The table structure is provided in the `scripts/database/DDL.sql` file.
+The table structure is provided in the `scripts/database/001-Create-Structure.sql` file.
 
 # Required environment variables
 
