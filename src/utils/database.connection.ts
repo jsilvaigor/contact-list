@@ -16,6 +16,12 @@ export class DatabaseConnection {
         return DatabaseConnection.connection
     }
 
+    static async disconnect() {
+        if(DatabaseConnection.connection){
+            await DatabaseConnection.connection.close()
+        }
+    }
+
     static async healthCheck() {
         Logger.debug(`Checking database health.`)
         const conn = await DatabaseConnection.getInstance()

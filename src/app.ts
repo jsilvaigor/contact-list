@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import envVars, {EnvVars, isDev} from "./utils/environment";
+import envVars, {EnvVars, isDev, isTest} from "./utils/environment";
 import express, {Application} from "express";
 import {useExpressServer} from "routing-controllers";
 import {HealthController} from "./health/health.controller";
@@ -9,9 +9,12 @@ import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 import {LoggerOptions} from "express-winston";
 import {Logger} from "./utils/logger";
+import {RegisterController} from "./auth/register/register.controller";
+import {RequestidMiddleware} from "./utils/requestid.middleware";
+import {DatabaseConnection} from "./utils/database.connection";
 
 export class App {
-    app: Application
+    private readonly app: Application
     env: EnvVars
     constructor(env: EnvVars = envVars) {
         this.env = env
@@ -36,13 +39,17 @@ export class App {
             ),
             meta: isDev()
         }
-        this.app.use(expressWinston.logger(loggerOptions))
+        if(!isTest()){
+            this.app.use(expressWinston.logger(loggerOptions))
+        }
+
     }
 
     configureRouter() {
         useExpressServer(this.app,{
-            controllers: [HealthController],
-            routePrefix: this.env.PREFIX
+            controllers: [HealthController, RegisterController],
+            routePrefix: this.env.PREFIX,
+            middlewares: [RequestidMiddleware]
         })
     }
 
@@ -50,6 +57,13 @@ export class App {
         Logger.log(`Application running on http://localhost:${this.env.PORT}${this.env.PREFIX}`);
         return this.app.listen(this.env.PORT)
     }
+
+    getApp() {
+        return this.app
+    }
 }
 
-new App().run()
+if(!isTest()){
+    new App().run()
+}
+

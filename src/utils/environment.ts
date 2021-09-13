@@ -10,6 +10,8 @@ export interface EnvVars {
     PORT: number;
     PREFIX: string;
     DATABASE_URL: string;
+    SALTS_OR_ROUNDS: number;
+    JWT_SECRET: string;
 }
 
 export function configureEnvironmentVars(environment: Record<string, unknown>): EnvVars {
@@ -18,13 +20,16 @@ export function configureEnvironmentVars(environment: Record<string, unknown>): 
         LOG_LEVEL: Joi.string().valid('debug', 'info', 'warn', 'error').default('debug'),
         PORT: Joi.number().default(3000),
         PREFIX: Joi.string().default("/api/v1"),
-        DATABASE_URL: Joi.string().required()
+        DATABASE_URL: Joi.string().required(),
+        SALTS_OR_ROUNDS: Joi.number().default(10),
+        JWT_SECRET: Joi.string().required(),
     });
 
     const { error, value: vars } = schema.validate(environment, {
         stripUnknown: true,
     });
     if (error) {
+        /* istanbul ignore next */
         throw new Error(`Config validation error: ${error.message}`);
     }
 
@@ -48,4 +53,8 @@ export default envVars;
 
 export function isDev(){
     return envVars.NODE_ENV === "development"
+}
+
+export function isTest(){
+    return envVars.NODE_ENV === "test"
 }

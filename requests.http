@@ -1,4 +1,15 @@
-GET http://localhost:3000/api/v1/health
+POST{{url}}/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "email": "john@company.com",
+  "password": "1#ssssssss33D"
+}
+
+###
+GET {{url}}/api/v1/health
+
+
 
 
 
