@@ -1,5 +1,7 @@
 # Project Overview
 
+[![Node.js CI](https://github.com/jsilvaigor/contact-list/actions/workflows/node.js.yml/badge.svg)](https://github.com/jsilvaigor/contact-list/actions/workflows/node.js.yml)
+
 This is a simple api that provides two functionalities `login` and `contacts`. 
 
 With the `login` funcionality you can create an account and do a login. A secure token will be returned in both actions. 
@@ -25,9 +27,10 @@ The table structure is provided in the `scripts/database/DDL.sql` file.
 
 The project is provided with a `.env.example` file with all used environment variables. You will have to make a copy and name it `.env`.
 
-- `NODE_ENV`: can be `dev`, `test` or `prod`; defaults to `dev`
+- `NODE_ENV`: can be `development`, `test` or `production`; defaults to `development`
 - `LOG_LEVEL`: can be `debug`,`info`, `warn` or `error`; defaults to `debug`
 - `PORT`: can be any valid network port, defaults to `3000`
+- `PREFIX`: the application URL prefix, defaults to `/api/v1`
 
 # How to run
 
