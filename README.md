@@ -31,6 +31,9 @@ The project is provided with a `.env.example` file with all used environment var
 - `LOG_LEVEL`: can be `debug`,`info`, `warn` or `error`; defaults to `debug`
 - `PORT`: can be any valid network port, defaults to `3000`
 - `PREFIX`: the application URL prefix, defaults to `/api/v1`
+- `DATABASE_URL`: postgresql connection string, *required*
+- `SALTS_OR_ROUNDS`: number of salts or rounds that will be used to hash using `bcrypt`, defaults to 10
+- `JWT_SECRET`: secret used to sign JWT, *required*
 
 # How to run
 
