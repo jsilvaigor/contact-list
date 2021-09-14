@@ -1,6 +1,8 @@
 # Project Overview
 
 [![Node.js CI](https://github.com/jsilvaigor/contact-list/actions/workflows/node.js.yml/badge.svg)](https://github.com/jsilvaigor/contact-list/actions/workflows/node.js.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e192bb7a479b706178d8/maintainability)](https://codeclimate.com/github/jsilvaigor/contact-list/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e192bb7a479b706178d8/test_coverage)](https://codeclimate.com/github/jsilvaigor/contact-list/test_coverage)
 
 This is a simple api that provides two functionalities `login` and `contacts`. 
 
