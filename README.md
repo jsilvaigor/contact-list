@@ -10,6 +10,10 @@ With the `login` funcionality you can create an account and do a login. A secure
 
 With the `contacts` functionality you can `create`, `read`, `update` and `delete` a contact. The authentication token will be required.
 
+The `health` functionality returns the `NODE_ENV` value and the result of a simple query on the database to check the connection.
+
+In the file `requests.http` you can see sample requests for the endpoints
+
 # Dependencies
 - [NodeJS LTS](https://nodejs.org/en/download/)
 - [Docker](https://www.docker.com/products/docker-desktop)
@@ -38,6 +42,9 @@ The project is provided with a `.env.example` file with all used environment var
 - `DATABASE_URL`: postgresql connection string, *required*
 - `SALTS_OR_ROUNDS`: number of salts or rounds that will be used to hash using `bcrypt`, defaults to 10
 - `JWT_SECRET`: secret used to sign JWT, *required*
+- `FIREBASE_SERVICE_ACCOUNT_KEY`: the contents of your `serviceAccountKey.json` as an inline string, *required*
+- `FIREBASE_DATABASE_URL`: your firebase realtime database url, *required*
+- `FIREBASE_REFERENCE`: your firebase database base reference, defaults to `address_book`
 
 # How to run
 
