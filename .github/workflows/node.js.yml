@@ -51,8 +51,11 @@ jobs:
       run: npm run migration:run
 
     - name: Run E2E tests with coverage
-      run: npm run test:cov
+      uses: paambaati/codeclimate-action@v2.2.4
+      with:
+        coverageCommand: npm run test:cov
       # Environment variables used while testing ( setting just the ones that does not have a default value )
       env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         DATABASE_URL: postgresql://master_user:postgres@postgres:5432/contact_list
         JWT_SECRET: superSecretDoNotTell
