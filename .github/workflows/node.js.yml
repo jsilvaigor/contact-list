@@ -14,20 +14,20 @@ jobs:
     runs-on: ubuntu-latest
     container: node:14.17-buster
 
-#    services:
-#      postgres:
-#        image: postgres
-#        env:
-#          POSTGRES_USER: master_user
-#          POSTGRES_PASSWORD: postgres
-#          POSTGRES_DB: contact_list
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: master_user
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: contact_list
 #        volumes:
 #          - ${{ github.workspace }}/scripts/database/001-Create-Structure.sql:/docker-entrypoint-initdb.d/001-Create-Sctructure.sql
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 15s
-#          --health-timeout 5s
-#          --health-retries 5
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 15s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
     - name: Check out repository code
@@ -41,9 +41,6 @@ jobs:
 
     - name: Run Typescript build
       run: npm run build
-
-    - name: Start database
-      run: make db
 
     - name: Run E2E tests with coverage
       run: npm run test:cov
