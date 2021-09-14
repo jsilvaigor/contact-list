@@ -51,7 +51,7 @@ jobs:
       run: npm run migration:run
 
     - name: Run E2E tests with coverage
-      uses: paambaati/codeclimate-action@v2.2.4
+      uses: paambaati/codeclimate-action@v2.7.5
       with:
         coverageCommand: npm run test:cov
       # Environment variables used while testing ( setting just the ones that does not have a default value )
