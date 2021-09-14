@@ -62,9 +62,18 @@ jobs:
         DATABASE_URL: postgresql://master_user:postgres@postgres:5432/contact_list
         JWT_SECRET: superSecretDoNotTell
 
-    - name: Deploy to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
-        heroku_email: ${{secrets.EMAIL}}
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ci
+    needs: build
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.EMAIL}}
