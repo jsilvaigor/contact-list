@@ -8,6 +8,8 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "lint:fix": "tslint -c tslint.json 'src/**/*.ts' --fix",
+    "migration:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate -n ",
+    "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
     "start": "node dist/app.js",
     "start:dev": "ts-node src/app.ts",
     "test": "jest",

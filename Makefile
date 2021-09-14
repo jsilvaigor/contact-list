@@ -3,7 +3,7 @@
 all: db app
 
 create_netwotk:
-	@echo "Creating network mini_bank_network"
+	@echo "Creating network contact_list_network"
 	./scripts/create_docker_network.sh
 
 app: db

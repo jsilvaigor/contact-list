@@ -8,7 +8,6 @@ export function getTypeOrmOptions(env: EnvVars = envVars): ConnectionOptions {
         type: "postgres",
         url: env.DATABASE_URL,
         entities: [UserModel],
-        schema: "contact_list",
         synchronize: false,
         ssl,
     };
