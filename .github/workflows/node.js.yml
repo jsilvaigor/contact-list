@@ -14,7 +14,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container: node:14.17-buster
-    needs: checkout_code
 
     services:
       postgres:
