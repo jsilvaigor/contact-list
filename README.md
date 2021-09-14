@@ -18,6 +18,7 @@ In the file `requests.http` you can see sample requests for the endpoints
 - [NodeJS LTS](https://nodejs.org/en/download/)
 - [Docker](https://www.docker.com/products/docker-desktop)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+- [Heroku](http://heroku-badge.herokuapp.com/?app=awesome-contact-list&root=api/v1/health)
 
 # Technologies
 
@@ -75,8 +76,13 @@ If you are not comfortable using it you can run this as a common NodeJS project,
 
     - Deletes all application related containers, databases, dependencies and temporary files
 
+# Next steps
 
-
-
+- Create a demo frontend client using a SPA framework (React, Angular or VueJS)
+- Improve code coverage to reach 100%
+- Add a Redis database to persist tokens
+- Validate if tokens are already present on Redis before generating a new one on login
+- Add roles/scopes to tokens, so users can have permissions
+- Find a better way to test firebase on integration tests without using a live account
 
 
