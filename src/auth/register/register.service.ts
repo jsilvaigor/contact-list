@@ -6,12 +6,12 @@ import {DatabaseConnection} from "../../utils/database.connection";
 import {generateAndSignToken} from "../../utils/jwt.utils";
 import {Logger} from "../../utils/logger";
 import {hashPassword} from "../../utils/password.utils";
-import {RegisterBody, TokenResponse} from "../auth.interface";
+import {AuthBody, TokenResponse} from "../auth.interface";
 import {UserModel} from "../user.model";
 
 export class RegisterService {
 
-    public async registerUser(body: RegisterBody, requestId: string): Promise<TokenResponse> {
+    public async registerUser(body: AuthBody, requestId: string): Promise<TokenResponse> {
         Logger.info(`Validating request body.`, requestId);
         this.validateBody(body);
         Logger.info(`Body validated, getting user repository instance.`, requestId);
@@ -33,7 +33,7 @@ export class RegisterService {
 
     }
 
-    private validateBody(user: RegisterBody): boolean {
+    private validateBody(user: AuthBody): boolean {
         const schema = Joi.object({
             email: Joi.string().email().required(),
             password: JoiPassword.string()

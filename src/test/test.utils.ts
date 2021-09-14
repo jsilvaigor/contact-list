@@ -1,7 +1,9 @@
 import faker from "faker";
-export function getTestRegisterBody() {
+import {AuthBody} from "../auth/auth.interface";
+import {v4 as uuidV4} from "uuid";
+export function getTestAuthBody(): AuthBody {
     return {
-        email: faker.datatype.number() + faker.internet.email(),
+        email: uuidV4() + faker.internet.email(),
         password: faker.internet.password(15, false, null, "@"),
     };
 }

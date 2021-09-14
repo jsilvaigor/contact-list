@@ -12,6 +12,7 @@ import {DatabaseConnection} from "./utils/database.connection";
 import envVars, {EnvVars, isDev, isTest} from "./utils/environment";
 import {Logger} from "./utils/logger";
 import {RequestidMiddleware} from "./utils/requestid.middleware";
+import {LoginController} from "./auth/login/login.controller";
 
 export class App {
     private readonly app: Application;
@@ -44,7 +45,6 @@ export class App {
             transports: [new winston.transports.Console()],
             format: winston.format.combine(
                 winston.format.json(),
-                winston.format.prettyPrint(),
             ),
             meta: isDev(),
         };
@@ -56,7 +56,7 @@ export class App {
 
     private configureRouter() {
         useExpressServer(this.app, {
-            controllers: [HealthController, RegisterController],
+            controllers: [HealthController, RegisterController, LoginController],
             routePrefix: this.env.PREFIX,
             middlewares: [RequestidMiddleware],
         });

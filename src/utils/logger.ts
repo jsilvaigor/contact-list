@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 import {object} from "joi";
 import envVars, {isTest} from "./environment";
 
