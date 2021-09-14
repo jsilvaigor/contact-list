@@ -23,7 +23,7 @@ export class LoginService {
             const isPasswordHashEqual = await checkPassword(body.password, user.password);
             if (isPasswordHashEqual) {
                 Logger.info("User created successfully. Generating token");
-                const token = await generateAndSignToken(user.userUUID);
+                const token = await generateAndSignToken(user.user_uuid);
                 return { token };
             }
 

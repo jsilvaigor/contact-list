@@ -15,6 +15,24 @@ Content-Type: application/json
   "password": "1#ssssssss33D"
 }
 
+
+###
+POST {{url}}/api/v1/contacts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MDg5M2NlMC02NjBjLTRlNGUtYWJmNi00YjJlYjRhNmEwMmYiLCJpYXQiOjE2MzE2NDU0OTksImV4cCI6MTYzMTY0OTA5OX0.kGBYUkn6vpUXQT8jW0sduUT03Cz5Kd3AP_qDv_lLlmY
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "phoneNumber": "+5599999999999",
+  "address": "Street X, number Y"
+}
+
+###
+GET {{url}}/api/v1/contacts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MDg5M2NlMC02NjBjLTRlNGUtYWJmNi00YjJlYjRhNmEwMmYiLCJpYXQiOjE2MzE2NDU0OTksImV4cCI6MTYzMTY0OTA5OX0.kGBYUkn6vpUXQT8jW0sduUT03Cz5Kd3AP_qDv_lLlmY
+
 ###
 GET {{url}}/api/v1/health
 

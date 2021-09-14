@@ -25,7 +25,7 @@ export class RegisterService {
             const toSave = new UserModel({email: body.email, password: hashedPassword});
             const newUser = await repository.save(toSave);
             Logger.info("User created successfully. Generating token");
-            const token = await generateAndSignToken(newUser.userUUID);
+            const token = await generateAndSignToken(newUser.user_uuid);
             return { token };
         } else {
             throw new BadRequestError("E-mail informed is already registered.");

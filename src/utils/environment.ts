@@ -12,6 +12,9 @@ export interface EnvVars {
     DATABASE_URL: string;
     SALTS_OR_ROUNDS: number;
     JWT_SECRET: string;
+    FIREBASE_SERVICE_ACCOUNT_KEY: string;
+    FIREBASE_DATABASE_URL: string;
+    FIREBASE_REFERENCE: string;
 }
 
 export function configureEnvironmentVars(environment: Record<string, unknown>): EnvVars {
@@ -23,6 +26,9 @@ export function configureEnvironmentVars(environment: Record<string, unknown>): 
         DATABASE_URL: Joi.string().required(),
         SALTS_OR_ROUNDS: Joi.number().default(10),
         JWT_SECRET: Joi.string().required(),
+        FIREBASE_SERVICE_ACCOUNT_KEY: Joi.string().required(),
+        FIREBASE_DATABASE_URL: Joi.string().uri().required(),
+        FIREBASE_REFERENCE: Joi.string().default("address_book"),
     });
 
     const { error, value: vars } = schema.validate(environment, {
@@ -33,7 +39,7 @@ export function configureEnvironmentVars(environment: Record<string, unknown>): 
         throw new Error(`Config validation error: ${error.message}`);
     }
 
-    return vars;
+    return  {...vars, FIREBASE_SERVICE_ACCOUNT_KEY: JSON.parse(vars.FIREBASE_SERVICE_ACCOUNT_KEY)};
 }
 
 let envVars: EnvVars;

@@ -23,7 +23,9 @@ There are also some quality of life libraries like `helmet` for increasing secur
 variables validation, `routing-controllers` for a better experience routing in `express`.
 
 The database used is `postgresql`, you can run it locally using the `make db` command provided.\
-The table structure is provided in the `scripts/database/001-Create-Structure.sql` file.
+For this command to work make a copy of the contents of `ormconfig.ev.ci` file and place them inside your local `.env` file
+changing the `PLACEHOLDER` with your postgres connection string. \
+The project is configured to user typeorm migrations, they are going to be executed automatically with `make db`
 
 # Required environment variables
 

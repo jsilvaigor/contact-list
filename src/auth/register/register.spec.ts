@@ -7,13 +7,13 @@ describe("Register User", () => {
 
     it("should register a user successfully", async () => {
         const registerBody = getTestAuthBody();
-        const response = await request(app).post(`${envVars.PREFIX}/auth/register`).send(registerBody).expect(200);
+        const response = await request(app).post(`${envVars.PREFIX}/auth/register`).send(registerBody).expect(201);
         expect(response.body.token).toBeDefined();
         expect(response.body.token).toMatch(/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/);
     });
     it("should return an error of duplicated user", async () => {
         let registerBody = getTestAuthBody();
-        const response = await request(app).post(`${envVars.PREFIX}/auth/register`).send(registerBody).expect(200);
+        const response = await request(app).post(`${envVars.PREFIX}/auth/register`).send(registerBody).expect(201);
         const errorResponse = await request(app).post(`${envVars.PREFIX}/auth/register`).send(registerBody).expect(400);
         expect(errorResponse.body.message).toBeDefined();
         expect(errorResponse.body.message).toBe("E-mail informed is already registered.");

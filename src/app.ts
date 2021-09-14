@@ -13,6 +13,8 @@ import envVars, {EnvVars, isDev, isTest} from "./utils/environment";
 import {Logger} from "./utils/logger";
 import {RequestidMiddleware} from "./utils/requestid.middleware";
 import {LoginController} from "./auth/login/login.controller";
+import {currentUserChecker} from "./utils/auth.utils";
+import {ContactsController} from "./contacts/contacts.controller";
 
 export class App {
     private readonly app: Application;
@@ -56,9 +58,10 @@ export class App {
 
     private configureRouter() {
         useExpressServer(this.app, {
-            controllers: [HealthController, RegisterController, LoginController],
+            controllers: [HealthController, RegisterController, LoginController, ContactsController],
             routePrefix: this.env.PREFIX,
             middlewares: [RequestidMiddleware],
+            currentUserChecker,
         });
     }
 

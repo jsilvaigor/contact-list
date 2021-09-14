@@ -2,8 +2,9 @@ import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity("users")
 export class UserModel {
-    @PrimaryGeneratedColumn({name: "user_uuid"})
-    public userUUID: string;
+    @PrimaryGeneratedColumn("uuid")
+    // tslint:disable-next-line
+    public user_uuid: string;
     @Column()
     public email: string;
     @Column({name: "password_hashed"})
