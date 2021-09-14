@@ -7,7 +7,7 @@ import {app} from "./jest.setup";
 import envVars from "../utils/environment";
 export function getTestAuthBody(): AuthBody {
     return {
-        email: `${uuidV4()}${faker.random.number()}@email.com`,
+        email: `${uuidV4()}${faker.datatype.number()}@email.com`,
         password: faker.internet.password(15, false, null, "@"),
     };
 }
