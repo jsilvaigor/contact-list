@@ -17,12 +17,12 @@ export function getTestContactBody(): CreateContact {
         address: faker.address.streetAddress(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
-        phoneNumber: faker.phone.phoneNumber()
-    }
+        phoneNumber: faker.phone.phoneNumber(),
+    };
 }
 
 export async function getTestAuthToken(): Promise<string> {
-    const registerBody = getTestAuthBody()
-    const response = await request(app).post(`${envVars.PREFIX}/auth/register`).send(registerBody)
-    return response.body.token
+    const registerBody = getTestAuthBody();
+    const response = await request(app).post(`${envVars.PREFIX}/auth/register`).send(registerBody);
+    return response.body.token;
 }
