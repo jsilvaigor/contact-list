@@ -42,7 +42,7 @@ jobs:
       run: npm run build
 
     - name: Run migrations
-      run: npm run migrations:run
+      run: npm run migration:run
 
     - name: Run E2E tests with coverage
       run: npm run test:cov
