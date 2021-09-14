@@ -1,14 +1,13 @@
 import faker from "faker";
 import {AuthBody} from "../auth/auth.interface";
-import {v4 as uuidV4} from "uuid";
 import {CreateContact} from "../contacts/contacts.interfaces";
 import request from "supertest";
 import {app} from "./jest.setup";
 import envVars from "../utils/environment";
 export function getTestAuthBody(): AuthBody {
     return {
-        email: `${uuidV4()}${faker.datatype.number()}@email.com`,
-        password: faker.internet.password(15, false, null, "@"),
+        email: faker.unique(faker.internet.email),
+        password: `1Aa@${faker.internet.password(15)}`,
     };
 }
 
