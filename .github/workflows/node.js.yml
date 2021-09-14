@@ -10,10 +10,10 @@ on:
     branches: [ main ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     container: node:14.17-buster
+    environment: ci
 
     services:
       postgres:
