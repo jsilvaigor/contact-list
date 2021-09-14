@@ -41,6 +41,12 @@ jobs:
     - name: Run Typescript build
       run: npm run build
 
+    - name: Prepare Typeorm config for CI
+      run: mv ormconfig.env.ci ormconfig.env
+
+    - name: Provide Typeorm a URL to connect and run migrations
+      run: sed -i 's+PLACEHOLDER+postgresql://master_user:postgres@postgres:5432/contact_list+g' ormconfig.env
+
     - name: Run migrations
       run: npm run migration:run
 
@@ -50,9 +56,3 @@ jobs:
       env:
         DATABASE_URL: postgresql://master_user:postgres@postgres:5432/contact_list
         JWT_SECRET: superSecretDoNotTell
-        TYPEORM_CONNECTION: postgres
-        TYPEORM_URL: postgresql://master_user:postgres@postgres:5432/contact_list
-        TYPEORM_SYNCHRONIZE: false
-        TYPEORM_ENTITIES: src/auth/user.model.ts
-        TYPEORM_MIGRATIONS_DIR: migrations
-        TYPEORM_MIGRATIONS: migrations/*.ts
